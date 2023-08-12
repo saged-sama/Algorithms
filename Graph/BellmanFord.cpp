@@ -23,7 +23,7 @@ void bellmanFord(int source, int n){
 	for(auto edge: edges){
 		auto [u, v, w] = edge;
 		if(minDistance[u] != LLONG_MAX and minDistance[v] > minDistance[u] + w){
-			cout << "Cycle!!!\n";
+			cout << "CYCLE FOUND!!!\n";
 		}
 	}
 }
