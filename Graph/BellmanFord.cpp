@@ -19,6 +19,13 @@ void bellmanFord(int source, int n){
 			if(minDistance[u] != LLONG_MAX) minDistance[v] = min(minDistance[v], minDistance[u] + w);
 		}
 	}
+	
+	for(auto edge: edges){
+		auto [u, v, w] = edge;
+		if(minDistance[u] != LLONG_MAX and minDistance[v] > minDistance[u] + w){
+			cout << "Cycle!!!\n";
+		}
+	}
 }
 
 signed main()
