@@ -48,8 +48,18 @@ pair<Point, Point> closest(vector<Point>& point, int start, int end){
     int d = min(dist1, dist2);
 
     vector<Point> strip;
+    if(mid > start){
+        for(int i = start; i <= end; i++){
+            if(dist(point[i], point[mid-1]) < d) strip.push_back(point[i]);
+        }
+    }
     for(int i = start; i <= end; i++){
         if(dist(point[i], point[mid]) < d) strip.push_back(point[i]);
+    }
+    if(mid < end){
+        for(int i = start; i <= end; i++){
+            if(dist(point[i], point[mid+1]) < d) strip.push_back(point[i]);
+        }
     }
     sort(strip.begin(), strip.end(), compy);
 
