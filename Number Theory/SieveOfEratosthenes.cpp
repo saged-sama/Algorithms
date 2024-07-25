@@ -8,22 +8,22 @@ vector <int> primes;
 
 // unnecessarily optimized sieve
 void sieve_of_eratosthenes(){
-    for(int i = 2; i <= N; i++){
+    for(int i = 2; i < N; i++){
         isPrime[i] = true;
     }
-    for(int i = 4; i <= N; i += 2){
+    for(int i = 4; i < N; i += 2){
         isPrime[i] = false;
     }
-    for(int i = 3; i*i <= N; i += 2){
+    for(int i = 3; i*i < N; i += 2){
         if(isPrime[i]){
-            for(int j = i*i; j <= N; j += i+i){
+            for(int j = i*i; j < N; j += i+i){
                 isPrime[j] = false;
             }
         }
     }
 
     // include this when you need the complete list of primes
-    for(int i = 0; i <= N; i++){
+    for(int i = 0; i < N; i++){
         if(isPrime[i]){
             primes.push_back(i);
         }
@@ -32,11 +32,11 @@ void sieve_of_eratosthenes(){
 
 // this is as good as the one above
 void sieve(){
-    for(int i = 2; i <= N; i++){
+    for(int i = 2; i < N; i++){
         isPrime[i] = true;
     }
     
-    for(int i = 2; i <= N; i++){
+    for(int i = 2; i < N; i++){
         if(isPrime[i]){
             primes.push_back(i);
             for(int j = i; j <= N; j += i){
