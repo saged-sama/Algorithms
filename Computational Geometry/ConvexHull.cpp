@@ -30,17 +30,14 @@ vector<point> convex_hull(vector<point> &points){
     vector<point> top_hull;
     top_hull.push_back(points[0]);
     top_hull.push_back(points[1]);
+    vector<point> bottom_hull;
+    bottom_hull.push_back(points[0]);
+    bottom_hull.push_back(points[1]);
     for(int i = 2; i < n; i++){
         while(top_hull.size() >= 2 && !is_clockwise(top_hull[top_hull.size() - 1] - top_hull[top_hull.size() - 2], points[i] - top_hull[top_hull.size() - 1])){
             top_hull.pop_back();
         }
         top_hull.push_back(points[i]);
-    }
-
-    vector<point> bottom_hull;
-    bottom_hull.push_back(points[0]);
-    bottom_hull.push_back(points[1]);
-    for(int i = 2; i < n; i++){
         while(bottom_hull.size() >= 2 && is_clockwise(bottom_hull[bottom_hull.size() - 1] - bottom_hull[bottom_hull.size() - 2], points[i] - bottom_hull[bottom_hull.size() - 1])){
             bottom_hull.pop_back();
         }
