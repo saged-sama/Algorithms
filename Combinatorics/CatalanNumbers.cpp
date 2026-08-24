@@ -3,7 +3,7 @@
 using namespace std;
 
 const lli MOD = 1e9+7;
-const lli N = 1e3+5;
+const lli N = 2e3+5;
 
 lli combo[N][N];
 
@@ -30,11 +30,36 @@ lli catalan(int n){
     return (combo[n+n][n] - combo[n+n][n+1] + MOD) % MOD;
 }
 
+lli permutation(int n, int r){
+    if(r > n) return 0;
+    lli ans = 1ll;
+    for(int i = n; i > n-r; i--){
+        ans = (ans * i) % MOD;
+    }
+    return ans;
+}
+
+long long int loop_big_mod(long long int n, long long int p){
+    long long int ret = 1ll;
+    while(p){
+        if(p & 1) ret = (ret * n) % MOD;
+        p >>= 1;
+        n = (n * n) % MOD;
+    }
+    return ret;
+}
+
+lli combination(int n, int r){
+    if(r > n) return 0;
+    return (permutation(n, r) * loop_big_mod(permutation(r, r), MOD-2)) % MOD;
+}
+
 int main(){
     initCombo();
     cout << combo[4][2] << " " << combo[10][4] << "\n";
     cout << loop_big_mod(2, 5) << " " << loop_big_mod(2, MOD-2) << "\n";
-
     cout << catalan(10) << "\n";
+    cout << permutation(5, 5) << "\n";
+    cout << combination(6, 2) << "\n";
     return 0;
 }
