@@ -54,12 +54,13 @@ lli combination(int n, int r){
     return (permutation(n, r) * loop_big_mod(permutation(r, r), MOD-2)) % MOD;
 }
 
+lli catalanV2(int n){
+    return (combination(n+n, n) - combination(n+n, n+1) + MOD) % MOD;
+}
+
 int main(){
     initCombo();
-    cout << combo[4][2] << " " << combo[10][4] << "\n";
-    cout << loop_big_mod(2, 5) << " " << loop_big_mod(2, MOD-2) << "\n";
     cout << catalan(10) << "\n";
-    cout << permutation(5, 5) << "\n";
-    cout << combination(6, 2) << "\n";
+    cout << catalanV2(10) << "\n";
     return 0;
 }

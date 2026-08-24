@@ -22,7 +22,12 @@ void initFacto(){
     facto[0] = 1ll;
     for(int i = 1; i < N; i++){
         facto[i] = (facto[i-1] * 1ll * i) % MOD; 
-        invFacto[i] = loop_big_mod(facto[i], MOD-2);
+    }
+    
+    invFacto[N-1] = loop_big_mod(facto[N-1], MOD-2);
+
+    for(int i = N-2; i >= 0; i--){
+        invFacto[i] = (invFacto[i+1] * (i+1)) % MOD;
     }
 }
 
