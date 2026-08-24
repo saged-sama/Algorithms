@@ -26,18 +26,8 @@ void initCombo(){
     }
 }
 
-lli loop_big_mod(lli n, lli p){
-    lli ret = 1ll;
-    while(p){
-        if(p & 1) ret = (ret * n) % MOD;
-        p >>= 1;
-        n = (n * n) % MOD;
-    }
-    return ret % MOD;
-}
-
 lli catalan(int n){
-    return (combo[n+n][n] * loop_big_mod(n+1ll, MOD-2ll))%MOD;
+    return (combo[n+n][n] - combo[n+n][n+1] + MOD) % MOD;
 }
 
 int main(){
